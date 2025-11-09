@@ -24,14 +24,12 @@ share/python-wheels/
 MANIFEST
 
 # PyTorch 模型文件
-*.pth
 *.pt
 *.ckpt
 *.pkl
 *.h5
 
 # 输出目录
-weights/
 logs/
 tensorboard/
 *.log
