@@ -43,19 +43,17 @@
 
 ## 2. 数据集描述
 
-Sprite数据集共包含了89400个数据样本，其中包括了5类（hero, non-hero, food, spell, side-facing）像素图像，图片为RGB彩色图像，尺寸大小为16×16×3。
+Sprite数据集共包含了89400个数据样本，如图1所示数据示例，其中包括了5类（hero, non-hero, food, spell, side-facing）像素图像，图片为RGB彩色图像，尺寸大小为16×16×3。
 
-数据集特点：
-- **样本数量**: 89,400个
-- **图像尺寸**: 16×16×3 (RGB)
-- **类别数量**: 5个主要类别 + null类别
-- **数据格式**: NumPy数组格式
+**图1. Sprite数据集示例**
+
+（注：如需要展示数据集示例图片，可在此处添加）
 
 ## 3. 方法介绍
 
 ### 3.1 数据预处理
 
-使用numpy读取下载好的Sprite数据，本次实验从中抽取出89400张数字图像样本构建训练数据集。此外，本实验对使用的图片进行了归一化处理，由原先的[0,255]值域归一化至[-1,1]。
+使用numpy读取下载好的Sprite数据，本次实验从中抽取出89400张数字图像样本构建训练数据集，每一类约14900张图片。此外，本实验对使用的图片进行了归一化处理，由原先的[0,255]值域归一化至[-1,1]。
 
 具体预处理步骤：
 1. 使用`transforms.ToTensor()`将图像从[0,255]转换到[0.0,1.0]，并转换为CHW格式
@@ -128,9 +126,7 @@ Sprite数据集共包含了89400个数据样本，其中包括了5类（hero, no
 
 ### 4.1 定性实验结果
 
-#### 4.1.1 无条件生成结果
-
-**图1. DDPM生成结果示例**
+**图2. Diffusion生成结果示例（DDPM）**
 
 ![DDPM生成结果](outputs/results/samples_ddpm.png)
 
@@ -138,7 +134,7 @@ Sprite数据集共包含了89400个数据样本，其中包括了5类（hero, no
 - 图像清晰，细节丰富，符合Sprite数据集的风格特征
 - 使用500步完整扩散过程，质量最优
 
-**图2. DDIM生成结果示例**
+**图3. Diffusion生成结果示例（DDIM）**
 
 ![DDIM生成结果](outputs/results/samples_ddim.png)
 
@@ -146,49 +142,24 @@ Sprite数据集共包含了89400个数据样本，其中包括了5类（hero, no
 - 生成质量与DDPM非常接近，视觉上几乎无法区分
 - 通过确定性采样路径实现加速
 
-#### 4.1.2 条件控制生成结果
-
-**图3. 条件控制生成结果示例（所有类别）**
+**图4. 条件控制生成结果示例（所有类别）**
 
 ![条件控制生成结果-所有类别](outputs/results/samples_conditional_all.png)
 
 展示了所有6个类别的生成结果，每个类别生成6个样本。
 
-**图4. Hero类别生成结果**
+**图5. 条件控制生成结果示例（各类别）**
 
-![Hero类别生成结果](outputs/results/samples_conditional_hero.png)
-
-成功生成英雄角色，控制效果优秀。
-
-**图5. Non-hero类别生成结果**
-
-![Non-hero类别生成结果](outputs/results/samples_conditional_non-hero.png)
-
-成功生成非英雄角色，控制效果优秀。
-
-**图6. Food类别生成结果**
-
-![Food类别生成结果](outputs/results/samples_conditional_food.png)
-
-成功生成食物物品，控制效果优秀。
-
-**图7. Spell类别生成结果**
-
-![Spell类别生成结果](outputs/results/samples_conditional_spell.png)
-
-成功生成法术效果，控制效果优秀。
-
-**图8. Side-facing类别生成结果**
-
-![Side-facing类别生成结果](outputs/results/samples_conditional_side-facing.png)
-
-成功生成侧向角色，控制效果优秀。
-
-**图9. Null类别生成结果**
-
-![Null类别生成结果](outputs/results/samples_conditional_null.png)
-
-无条件生成，展示随机类别生成效果。
+<div align="center">
+  <img src="outputs/results/samples_conditional_hero.png" width="30%" alt="Hero类别"/>
+  <img src="outputs/results/samples_conditional_non-hero.png" width="30%" alt="Non-hero类别"/>
+  <img src="outputs/results/samples_conditional_food.png" width="30%" alt="Food类别"/>
+  <p>Hero | Non-hero | Food</p>
+  <img src="outputs/results/samples_conditional_spell.png" width="30%" alt="Spell类别"/>
+  <img src="outputs/results/samples_conditional_side-facing.png" width="30%" alt="Side-facing类别"/>
+  <img src="outputs/results/samples_conditional_null.png" width="30%" alt="Null类别"/>
+  <p>Spell | Side-facing | Null</p>
+</div>
 
 ### 4.2 定量实验结果
 
@@ -219,21 +190,11 @@ Sprite数据集共包含了89400个数据样本，其中包括了5类（hero, no
 
 **训练曲线可视化**:
 
-**图10. 无条件训练损失曲线**
-
 ![无条件训练损失曲线](outputs/tensorboard_pic/train_20251108_163510/training_loss_curve.png)
-
-**图11. 条件训练损失曲线**
 
 ![条件训练损失曲线](outputs/tensorboard_pic/train_conditional_20251108_173152/training_loss_curve.png)
 
-**图12. 训练损失对比**
-
 ![训练损失对比](outputs/tensorboard_pic/comparison/loss_comparison.png)
-
-**图13. 关键Epoch损失对比**
-
-![关键Epoch损失对比](outputs/tensorboard_pic/comparison/key_epochs_comparison.png)
 
 ### 4.3 消融实验
 
