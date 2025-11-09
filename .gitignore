@@ -31,7 +31,6 @@ MANIFEST
 *.h5
 
 # 输出目录
-outputs/
 results/
 weights/
 logs/

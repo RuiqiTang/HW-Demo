@@ -252,9 +252,12 @@ class ExperimentRunner:
         model.load_state_dict(torch.load(model_path, map_location=self.device))
         model.eval()
         
+        # 获取模型权重的dtype
+        model_dtype = next(model.parameters()).dtype
+        
         # 生成测试条件
         test_context = generate_test_context(n_cfeat=MODEL_CONFIG["n_cfeat"])
-        test_context = test_context.to(self.device)
+        test_context = test_context.to(dtype=model_dtype, device=self.device)
         
         # 为每个类别单独采样
         class_names = ["hero", "non-hero", "food", "spell", "side-facing", "null"]

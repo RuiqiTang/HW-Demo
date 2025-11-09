@@ -257,9 +257,18 @@ class ContextUNet(nn.Module):
         Returns:
             out: 预测的噪声 [B, C, H, W]
         """
+        # 确保所有输入使用相同的数据类型
+        dtype = x.dtype
+        device = x.device
+        
         # 处理时间步维度
         if t.dim() == 1:
             t = t.unsqueeze(1)
+        t = t.to(dtype=dtype, device=device)
+        
+        # 处理条件输入
+        if c is not None:
+            c = c.to(dtype=dtype, device=device)
         
         # 初始卷积
         x = self.init_conv(x)
@@ -273,7 +282,7 @@ class ContextUNet(nn.Module):
         
         # 处理条件
         if c is None:
-            c = torch.zeros(x.shape[0], self.n_cfeat).to(x.device)
+            c = torch.zeros(x.shape[0], self.n_cfeat, dtype=dtype, device=device)
         
         # 嵌入时间和条件
         cemb1 = self.contextembed1(c).view(-1, self.n_feat * 2, 1, 1)

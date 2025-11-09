@@ -192,7 +192,7 @@ def generate_test_context(n_cfeat: int = 5) -> torch.Tensor:
         [0, 0, 0, 1, 0],  # spell
         [0, 0, 0, 0, 1],  # side-facing
         [0, 0, 0, 0, 0],  # null
-    ] * 6)  # 重复6次，共36个样本
+    ] * 6, dtype=torch.float32)  # 重复6次，共36个样本，明确指定为float32
     
     return vec
 

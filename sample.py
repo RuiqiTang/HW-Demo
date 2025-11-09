@@ -256,9 +256,12 @@ def sample_conditional():
     
     model.eval()
     
+    # 获取模型权重的dtype
+    model_dtype = next(model.parameters()).dtype
+    
     # 生成测试条件
     test_context = generate_test_context(n_cfeat=MODEL_CONFIG["n_cfeat"])
-    test_context = test_context.to(device)
+    test_context = test_context.to(dtype=model_dtype, device=device)
     
     print(f"测试条件形状: {test_context.shape}")
     print("条件类别: hero, non-hero, food, spell, side-facing, null")
