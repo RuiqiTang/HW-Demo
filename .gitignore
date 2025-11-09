@@ -1,0 +1,112 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch 模型文件
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.h5
+
+# 输出目录
+outputs/
+results/
+weights/
+logs/
+tensorboard/
+*.log
+experiment.log
+
+# 数据集文件（通常很大，不提交到git）
+*.npy
+*.npz
+*.hdf5
+*.h5
+data/
+datasets/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# 环境变量
+.env
+.env.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 参考代码目录（可选，如果不需要提交）
+# Diffusion_Demo/
+# Learning-Diffusion/
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# 实验报告（如果包含个人信息，可以考虑忽略）
+# 实验报告.md
+
+# 测试覆盖率
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# 其他
+*.zip
+*.tar.gz
+*.rar
